@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+
+@layer base {
+  html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+  }
+
+  @media (min-width: 420px) {
+    html {
+      font-size: 13px;
+    }
+  }
+
+  h1 {
+    @apply text-3xl font-bold md:text-5xl font-Poppins;
+  }
+
+  h2 {
+    @apply text-2xl font-bold md:text-4xl font-Poppins;
+  }
+
+  h3 {
+    @apply text-xl font-bold md:text-3xl font-Poppins;
+  }
+
+  h4 {
+    @apply text-lg font-bold font-Poppins;
+  }
+
+  h5 {
+    @apply text-base font-bold font-Poppins;
+  }
+
+  body {
+    @apply text-sm font-Poppins md:text-base;
+  }
+
+  * {
+    @apply font-Poppins;
+  }
+}

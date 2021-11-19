@@ -1,21 +1,19 @@
-const { fontFamily } = require("tailwindcss/defaultTheme")
-
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
-        primary: ["IBM Plex Sans Arabic", ...fontFamily.sans],
+        Poppins: ["Poppins", "sans-serif"],
       },
       colors: {
         primary: {
-          200: "#e1e8f0",
-          500: "#40407a",
+          200: "#304D63",
+          500: "#304D63",
         },
         secondary: {
-          400: "",
-          500: "",
+          400: "#B2E7E8",
+          500: "#8FB9AA",
         },
       },
       gridTemplateColumns: {
