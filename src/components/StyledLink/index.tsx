@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom"
 import clsx from "clsx"
-
+import { Link } from "react-router-dom"
 interface StyledLinkProps {
   text: string
   className?: string
@@ -13,10 +12,9 @@ const StyledLink: React.FC<StyledLinkProps> = ({
   path = "/",
 }) => {
   return (
-    // <Link to={linkTo} className={clsx(className, ``)}>
-    //   {text}
-    // </Link>
-    <div></div>
+    <Link to={path} className={clsx(className, ``)}>
+      {text}
+    </Link>
   )
 }
 
