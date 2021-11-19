@@ -5,6 +5,7 @@
 
 @layer base {
   html {
+    overflow: hidden;
     font-size: 10px;
     scroll-behavior: smooth;
   }
@@ -37,9 +38,25 @@
 
   body {
     @apply text-sm font-Poppins md:text-base;
+    height: 100vh;
   }
 
   * {
     @apply font-Poppins;
   }
+}
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+}
+::-webkit-scrollbar-thumb {
+  @apply rounded-sm bg-secondary-500;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-600;
+}
+.dark ::-webkit-scrollbar-track {
+  @apply bg-gray-600;
 }

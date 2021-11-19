@@ -2,12 +2,12 @@ import StyledLink from "../StyledLink"
 
 const Header = () => {
   return (
-    <header className={`flex bg-gray-900 text-gray-300`}>
+    <header className={`flex bg-gray-900 text-gray-300 overflow-hidden sticky`}>
       <nav
         className={`flex justify-between container mx-auto p-9 items-center `}
       >
         <h1 className={`uppercase text-blue-100 `}>scopic</h1>
-        <ul className="flex gap-8">
+        <ul className="flex gap-6">
           <li>
             <StyledLink
               path="/"

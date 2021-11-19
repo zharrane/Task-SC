@@ -34,15 +34,15 @@ const Filter: React.FC<FilterProps> = ({ title, className }) => {
         name: "Tools",
       },
       {
-        id: "3",
+        id: "4",
         name: "Art",
       },
       {
-        id: "3",
+        id: "5",
         name: "books",
       },
       {
-        id: "3",
+        id: "6",
         name: "craft",
       },
     ])
@@ -54,7 +54,7 @@ const Filter: React.FC<FilterProps> = ({ title, className }) => {
   }
 
   return (
-    <div className={clsx(className, `bg-gray-200 p-9 `)}>
+    <div className={clsx(className, `bg-gray-200 p-9 pt-16 `)}>
       <div className={`flex justify-between items-center pr-10`}>
         <h1 className={`capitalize text-gray-700`}>{title}</h1>
         <DropDown
@@ -85,7 +85,7 @@ const Filter: React.FC<FilterProps> = ({ title, className }) => {
             <span>Minimum Bid</span>
             <div className="flex gap-2 mr-5 items-end">
               <span>{minRangeValue}</span>
-              <div className="flex flex-col">
+              <div className="flex flex-col h-full">
                 <input
                   type="range"
                   id="price-range"

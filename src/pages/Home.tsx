@@ -1,19 +1,81 @@
+import Card from "../components/Card"
 import Filter from "../components/Filter"
 
 const HomePage = () => {
   return (
-    <div className="grid lg:grid-cols-5 lg:min-h-screen lg:overflow-hidden ">
-      <Filter title="filters" className={`lg:col-span-1 lg:pt-28`} />
-      <div className="grid grid-cols-1 lg:col-span-4 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-scroll overflow-x-hidden lg:min-h-screen">
-        <h1 className="bg-gray-400">Test Test Test</h1>
-        <h1 className="bg-gray-400">Test Test Test</h1>
-        <h1 className="bg-gray-400">Test Test Test</h1>
-        <h1 className="bg-gray-400">Test Test Test</h1>
-        <h1 className="bg-gray-400">Test Test Test</h1>
-        <h1 className="bg-gray-400">Test Test Test</h1>
-        <h1 className="bg-gray-400">Test Test Test</h1>
-        <h1 className="bg-gray-400">Test Test Test</h1>
-        <h1 className="bg-gray-400">Test Test Test</h1>
+    <div className="flex flex-col lg:flex-row min-h-screen lg:overflow-y-hidden ">
+      <Filter title="filters" />
+      <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 w-full gap-8 p-36 overflow-y-scroll max-h-screen custom-scroll">
+        <Card
+          title="Product 0 "
+          description="this is a quit good product to buy from our store"
+          imageUrl="/assets/images/no_image.jpg"
+        />
+        <Card
+          title="Product 0 "
+          description="this is a quit good product to buy from our store"
+          imageUrl="/assets/images/no_image.jpg"
+        />
+        <Card
+          title="Product 0 "
+          description="this is a quit good product to buy from our store"
+          imageUrl="/assets/images/no_image.jpg"
+        />
+        <Card
+          title="Product 0 "
+          description="this is a quit good product to buy from our store"
+          imageUrl="/assets/images/no_image.jpg"
+        />
+        <Card
+          title="Product 0 "
+          description="this is a quit good product to buy from our store"
+          imageUrl="/assets/images/no_image.jpg"
+        />
+        <Card
+          title="Product 0 "
+          description="this is a quit good product to buy from our store"
+          imageUrl="/assets/images/no_image.jpg"
+        />
+        <Card
+          title="Product 0 "
+          description="this is a quit good product to buy from our store"
+          imageUrl="/assets/images/no_image.jpg"
+        />
+        <Card
+          title="Product 0 "
+          description="this is a quit good product to buy from our store"
+          imageUrl="/assets/images/no_image.jpg"
+        />
+        <Card
+          title="Product 0 "
+          description="this is a quit good product to buy from our store"
+          imageUrl="/assets/images/no_image.jpg"
+        />
+        <Card
+          title="Product 0 "
+          description="this is a quit good product to buy from our store"
+          imageUrl="/assets/images/no_image.jpg"
+        />
+        <Card
+          title="Product 0 "
+          description="this is a quit good product to buy from our store"
+          imageUrl="/assets/images/no_image.jpg"
+        />
+        <Card
+          title="Product 0 "
+          description="this is a quit good product to buy from our store"
+          imageUrl="/assets/images/no_image.jpg"
+        />
+        <Card
+          title="Product 0 "
+          description="this is a quit good product to buy from our store"
+          imageUrl="/assets/images/no_image.jpg"
+        />
+        <Card
+          title="Product 0 "
+          description="this is a quit good product to buy from our store"
+          imageUrl="/assets/images/no_image.jpg"
+        />
       </div>
     </div>
   )
