@@ -6,7 +6,7 @@ const Header = () => {
       <nav
         className={`flex justify-between container mx-auto p-9 items-center `}
       >
-        <h1 className={`uppercase `}>scopic</h1>
+        <h1 className={`uppercase text-blue-100 `}>scopic</h1>
         <ul className="flex gap-8">
           <li>
             <StyledLink
