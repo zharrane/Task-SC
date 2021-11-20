@@ -4,7 +4,7 @@ const AutoBid = () => {
   return (
     <main className="container py-24 mx-auto overflow-hidden">
       <div className=" px-9">
-        <div className="flex flex-col gap-24 sm:gap-16 md:gap-8 lg:gap-16 ">
+        <div className="flex flex-col gap-20 sm:gap-16 md:gap-14 lg:gap-12 ">
           <div className="flex flex-col gap-6">
             <p className="text-gray-400 uppercase">settings</p>
             <h1> configure the auto-biding</h1>
@@ -40,8 +40,8 @@ const AutoBid = () => {
               />
               <span className="text-3xl font-bold">%</span>
             </div>
+            <StyledButton text="save" className="max-w-lg mt-6" />
           </div>
-          <StyledButton text="save" className="max-w-lg" />
         </div>
       </div>
     </main>
