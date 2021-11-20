@@ -2,9 +2,9 @@ import StyledButton from "../components/StyledButton"
 
 const AutoBid = () => {
   return (
-    <main className="py-24 overflow-auto ">
-      <div className="container mx-auto lg:overflow-hidden px-9">
-        <div className="flex flex-col gap-24 lg:gap-12 ">
+    <main className="container py-24 mx-auto overflow-hidden">
+      <div className=" px-9">
+        <div className="flex flex-col gap-24 sm:gap-16 md:gap-8 lg:gap-16 ">
           <div className="flex flex-col gap-6">
             <p className="text-gray-400 uppercase">settings</p>
             <h1> configure the auto-biding</h1>
@@ -28,13 +28,13 @@ const AutoBid = () => {
               />
             </div>
           </div>
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-10 lg:gap-6">
             <h2>maximum bid amount</h2>
             <p>get the notification about your reserved bids</p>
             <div className="flex max-w-sm gap-5 p-6 bg-blue-100 rounded-md shadow-sm filter ">
               <input
                 type="number"
-                placeholder="100"
+                placeholder="90"
                 className="text-2xl text-center bg-transparent text-bold focus:outline-none"
                 min="0"
               />

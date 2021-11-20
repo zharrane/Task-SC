@@ -24,7 +24,7 @@ const Header = () => {
             <StyledLink
               path="/"
               text="sign up"
-              className={`border-2 border-secondary-500 uppercase font-bold tracking-wide hover:border-secondary-400 hover:text-gray-200`}
+              className={`border-2 capitalize border-secondary-500 uppercase font-bold tracking-wide hover:border-secondary-400 hover:text-gray-200`}
             />
           </li>
         </ul>
