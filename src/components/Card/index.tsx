@@ -17,7 +17,7 @@ const Card: React.FC<CardProps> = ({
   return (
     <div className="h-full max-w-lg overflow-hidden rounded shadow-lg bg-blue-50">
       <img className="object-cover w-full h-72" src={imageUrl} alt={title} />
-      <div className="container flex items-center justify-between px-0 py-3">
+      <div className="flex items-center px-0 py-3 ">
         <div className="px-2 w-52 lg:w-44">
           <div className="text-xl font-bold ">{title}</div>
           <p className="text-base text-gray-700 truncate ">{description}</p>
@@ -26,7 +26,7 @@ const Card: React.FC<CardProps> = ({
         <StyledLink
           path={`details/${productId}`}
           text="Bid now"
-          className="px-2 py-4 bg-gray-700 rounded-md shadow-sm xl:px-4 filter text-secondary-400"
+          className="px-1 py-4 bg-gray-700 rounded-md shadow-sm xl:px-2 filter text-secondary-400"
         />
         {/* </StyledButton> */}
       </div>
