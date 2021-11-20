@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import StyledLink from "../StyledLink"
 
 const Header = () => {
@@ -8,7 +9,9 @@ const Header = () => {
       <nav
         className={`flex justify-between container mx-auto p-9 items-center `}
       >
-        <h1 className={`uppercase text-blue-100 `}>scopic</h1>
+        <Link to="/">
+          <h1 className={`uppercase text-blue-100 `}>scopic</h1>
+        </Link>
         <ul className="flex gap-6">
           <li>
             <StyledLink

@@ -9,7 +9,7 @@ const Details = () => {
   const { id } = useParams()
   useEffect(() => {}, [id])
   return (
-    <div className="flex flex-col overflow-x-hidden overflow-y-auto md:flex-row ">
+    <main className="flex flex-col overflow-x-hidden overflow-y-auto md:flex-row ">
       <div className="md:w-7/12 ">
         <ImageGal />
       </div>
@@ -21,8 +21,8 @@ const Details = () => {
         </div>
         <div className="flex flex-col gap-4 overflow-hidden ">
           <h1>details</h1>
-          <div className="overflow-y-auto">
-            <p>
+          <div className="overflow-y-auto ">
+            <p className="leading-relaxed">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex amet
               autem accusantium velit quidem! Nisi sit consectetur culpa
               accusantium at sint error, doloribus dolorem possimus laudantium
@@ -100,7 +100,7 @@ const Details = () => {
 
         <StyledButton text="Place a bid" />
 
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
           <CheckBox name="activate the" />
           <Link to="/auto-bid">
             <p className="text-gray-900 underline hover:text-black ">
@@ -109,7 +109,7 @@ const Details = () => {
           </Link>
         </div>
       </section>
-    </div>
+    </main>
   )
 }
 
