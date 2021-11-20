@@ -17,27 +17,27 @@
   }
 
   h1 {
-    @apply text-3xl font-bold md:text-5xl font-Poppins;
+    @apply text-3xl font-bold capitalize md:text-5xl font-Poppins;
   }
 
   h2 {
-    @apply text-2xl font-bold md:text-4xl font-Poppins;
+    @apply text-2xl font-bold capitalize md:text-4xl font-Poppins;
   }
 
   h3 {
-    @apply text-xl font-bold md:text-3xl font-Poppins;
+    @apply text-xl font-bold capitalize md:text-3xl font-Poppins;
   }
 
   h4 {
-    @apply text-lg font-bold font-Poppins;
+    @apply text-lg font-bold capitalize font-Poppins;
   }
 
   h5 {
-    @apply text-base font-bold font-Poppins;
+    @apply text-base font-bold capitalize font-Poppins;
   }
 
   body {
-    @apply text-sm font-Poppins md:text-base;
+    @apply text-sm capitalize font-Poppins md:text-base;
     height: 100vh;
   }
 
@@ -59,4 +59,19 @@
 }
 .dark ::-webkit-scrollbar-track {
   @apply bg-gray-600;
+}
+
+.selected-image {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.carousel__image {
+  margin-right: 10px;
+  height: 150px;
+  min-width: 150px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

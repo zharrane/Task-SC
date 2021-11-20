@@ -1,7 +1,9 @@
 import clsx from "clsx"
+import { ReactElement } from "react"
 
 interface StyledButtonProps {
-  text: string
+  text: string | ReactElement
+  children?: any
   className?: string
   // onClick: () => void
 }
@@ -9,6 +11,7 @@ interface StyledButtonProps {
 const StyledButton: React.FC<StyledButtonProps> = ({
   text,
   className = "",
+  children,
 }) => {
   return (
     <button
@@ -18,6 +21,7 @@ const StyledButton: React.FC<StyledButtonProps> = ({
       )}
     >
       {text}
+      {children}
     </button>
   )
 }

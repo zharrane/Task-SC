@@ -1,5 +1,6 @@
 import clsx from "clsx"
 import { useEffect, useState } from "react"
+import CheckBox from "../CheckBox"
 import DropDown from "./DropDown"
 
 interface FilterProps {
@@ -48,8 +49,6 @@ const Filter: React.FC<FilterProps> = ({ title, className }) => {
     ])
   }, [])
   const handleOnChange = (e: any) => {
-    console.log(e.target.value)
-    console.log(e)
     setRangeValue(e.target.value)
   }
 
@@ -112,18 +111,7 @@ const Filter: React.FC<FilterProps> = ({ title, className }) => {
             <span>Category</span>
             <div className="grid grid-cols-3 gap-2 px-2 mt-4 md:grid-cols-4 lg:grid-cols-1">
               {categories.map((category) => {
-                return (
-                  <div key={category.id} className="flex gap-4 ">
-                    <input
-                      type="checkbox"
-                      id={category.name}
-                      value={category.name}
-                    />
-                    <label htmlFor={category.name} className={"capitalize"}>
-                      {category.name}
-                    </label>
-                  </div>
-                )
+                return <CheckBox name={category.name} key={category.id} />
               })}
             </div>
           </div>
