@@ -1,5 +1,3 @@
-import StyledLink from "../components/StyledLink"
-
 const AutoBid = () => {
   return (
     <div>

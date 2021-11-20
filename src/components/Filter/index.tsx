@@ -54,7 +54,12 @@ const Filter: React.FC<FilterProps> = ({ title, className }) => {
   }
 
   return (
-    <div className={clsx(className, `bg-gray-200 p-9 pt-16 `)}>
+    <div
+      className={clsx(
+        className,
+        `bg-gray-200 p-9 pt-16 overflow-hidden w-full h-full`
+      )}
+    >
       <div className={`flex justify-between items-center pr-10`}>
         <h1 className={`capitalize text-gray-700`}>{title}</h1>
         <DropDown
@@ -66,7 +71,7 @@ const Filter: React.FC<FilterProps> = ({ title, className }) => {
 
       <div
         className={clsx(
-          `container mt-8  lg:h-full lg:block  `,
+          `container pt-8 lg:h-full lg:block overflow-hidden  `,
           expandFilter ? " " : "hidden "
         )}
       >
@@ -83,7 +88,7 @@ const Filter: React.FC<FilterProps> = ({ title, className }) => {
           </div>
           <div className={`flex flex-col gap-4 `}>
             <span>Minimum Bid</span>
-            <div className="flex gap-2 mr-5 items-end">
+            <div className="flex items-end gap-2 py-2 mr-5">
               <span>{minRangeValue}</span>
               <div className="flex flex-col h-full">
                 <input
@@ -98,14 +103,14 @@ const Filter: React.FC<FilterProps> = ({ title, className }) => {
                   onChange={handleOnChange}
                 />
               </div>
-              <span className="w-8">{rangeValue}$</span>
+              <span className="w-16">{rangeValue}$</span>
             </div>
           </div>
         </div>
-        <div className="   mt-8">
+        <div className="mt-8 ">
           <div>
             <span>Category</span>
-            <div className="grid gap-2 grid-cols-3 md:grid-cols-4 lg:grid-cols-1 mt-4">
+            <div className="grid grid-cols-3 gap-2 px-2 mt-4 md:grid-cols-4 lg:grid-cols-1">
               {categories.map((category) => {
                 return (
                   <div key={category.id} className="flex gap-4 ">

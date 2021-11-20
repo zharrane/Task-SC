@@ -9,22 +9,26 @@ function App() {
     console.log("App loading")
   }, [])
   return (
-    <>
-      <Router>
-        <Header />
-        <Routes>
-          {routes.map((route, index) => {
-            return (
-              <Route
-                key={index}
-                path={route.path}
-                element={<route.component />}
-              />
-            )
-          })}
-        </Routes>
-      </Router>
-    </>
+    <Router>
+      <div className="flex flex-col h-screen ">
+        <div>
+          <Header />
+        </div>
+        <div className="flex flex-col mt-32 overflow-hidden lg:flex-row">
+          <Routes>
+            {routes.map((route, index) => {
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={<route.component />}
+                />
+              )
+            })}
+          </Routes>
+        </div>
+      </div>
+    </Router>
   )
 }
 

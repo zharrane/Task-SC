@@ -1,3 +1,5 @@
+import clsx from "clsx"
+
 interface StyledButtonProps {
   text: string
   className?: string
@@ -9,7 +11,12 @@ const StyledButton: React.FC<StyledButtonProps> = ({
   className = "",
 }) => {
   return (
-    <button className=" filter shadow-sm py-4 px-6 xl:px-8 rounded-md bg-gray-700 text-secondary-400">
+    <button
+      className={clsx(
+        className,
+        " filter shadow-sm py-4 px-2  rounded-md bg-gray-700 text-secondary-400"
+      )}
+    >
       {text}
     </button>
   )

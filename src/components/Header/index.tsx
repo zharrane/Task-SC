@@ -2,7 +2,9 @@ import StyledLink from "../StyledLink"
 
 const Header = () => {
   return (
-    <header className={`flex bg-gray-900 text-gray-300 overflow-hidden sticky`}>
+    <header
+      className={`flex bg-primary-500 text-gray-300 absolute top-0 left-0 right-0  z-50`}
+    >
       <nav
         className={`flex justify-between container mx-auto p-9 items-center `}
       >
