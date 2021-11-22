@@ -1,12 +1,12 @@
 import { useEffect } from "react"
-import { Link } from "react-router-dom"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import CheckBox from "../components/CheckBox"
 import ImageGal from "../components/ImageGallery"
 import StyledButton from "../components/StyledButton"
 
 const Details = () => {
   const { id } = useParams()
+  console.log(id)
   useEffect(() => {}, [id])
   return (
     <main className="flex flex-col overflow-x-hidden overflow-y-auto md:flex-row ">

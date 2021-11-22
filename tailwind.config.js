@@ -1,7 +1,7 @@
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false,
-  mode: "jit",
+  // mode: "jit",
   theme: {
     extend: {
       fontFamily: {
@@ -9,8 +9,8 @@ module.exports = {
       },
       colors: {
         primary: {
-          200: "#304D63",
-          500: "#304D63",
+          200: "#1C3D64",
+          500: "#1C3D64",
         },
         secondary: {
           400: "#B2E7E8",
@@ -23,7 +23,10 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ["checked"],
+      borderColor: ["checked"],
+    },
   },
   plugins: [],
 }
