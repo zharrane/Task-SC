@@ -67,9 +67,15 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 350px;
 }
-
-.carousel__image {
+.selected-image-big {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 650px;
+}
+.carousel-image {
   margin-right: 10px;
   height: 150px;
   min-width: 150px;
@@ -80,4 +86,13 @@
 
 .custom-grid {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.floating-button-left {
+  top: 40%;
+  left: 10px;
+}
+.floating-button-right {
+  top: 40%;
+  right: 10px;
 }

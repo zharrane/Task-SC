@@ -77,7 +77,7 @@ const Filter: React.FC<FilterProps> = ({ title, className }) => {
             )}
           >
             <div
-              className={`flex justify-between container mx-auto overflow-hidden lg:flex-col lg:gap-16  lg:justify-start`}
+              className={`flex justify-between   container mx-auto overflow-hidden lg:flex-col lg:gap-16  lg:justify-start`}
             >
               <div className={`  flex flex-col  gap-4 `}>
                 <span>Arrange</span>
@@ -89,7 +89,7 @@ const Filter: React.FC<FilterProps> = ({ title, className }) => {
               </div>
               <div className={`flex flex-col gap-4 `}>
                 <span>Minimum Bid</span>
-                <div className="flex items-center gap-2 py-2 ">
+                <div className="flex items-center gap-2 ">
                   <span>{minRangeValue}</span>
                   <div className="flex flex-col h-full">
                     <input

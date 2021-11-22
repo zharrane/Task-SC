@@ -9,19 +9,19 @@ const Details = () => {
   console.log(id)
   useEffect(() => {}, [id])
   return (
-    <main className="flex flex-col overflow-x-hidden overflow-y-auto md:flex-row ">
+    <main className="flex flex-col py-10 overflow-x-hidden overflow-y-auto md:flex-row ">
       <div className="md:w-7/12 ">
         <ImageGal />
       </div>
 
-      <section className="container flex flex-col gap-12 px-10 py-20 mx-auto md:w-5/12 md:py-40">
+      <section className="container flex flex-col gap-6 px-10 mx-auto md:w-5/12">
         <div className="flex flex-col gap-6">
           <h1 className="">{"product 0"} </h1>
           <p> minimum bid $ {"10"}</p>
         </div>
         <div className="flex flex-col gap-4 overflow-hidden ">
           <h1>details</h1>
-          <div className="overflow-y-auto ">
+          <div className="overflow-y-auto h-60 ">
             <p className="leading-relaxed">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex amet
               autem accusantium velit quidem! Nisi sit consectetur culpa

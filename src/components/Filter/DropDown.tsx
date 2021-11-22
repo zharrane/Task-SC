@@ -13,9 +13,9 @@ const DropDown: React.FC<DropDownProps> = ({
   return (
     <button
       className={clsx(
-        ` w-12 h-12 px-3.5 py-4 rounded-full filter  bg-secondary-500 transform duration-500`,
+        ` w-12 h-12 px-3.5 py-4 rounded-full filter hover:-translate-y-2 hover:shadow-xl bg-blue-200  transform duration-500`,
         className,
-        expanded ? "scale-110 shadow-2xl " : " shadow-lg "
+        expanded ? "  " : "  "
       )}
       onClick={() => handleExpand(!expanded)}
     >

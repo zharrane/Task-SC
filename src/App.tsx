@@ -1,7 +1,7 @@
 import "./App.css"
 import Header from "./components/Header"
 import { useEffect } from "react"
-import { Routes, Route, Navigate } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import { protectedRoutes, nonProtedtedRoutes } from "./navigation/AppRouter"
 import useAuth from "./helpers/useAuth"
 
@@ -36,9 +36,7 @@ function App() {
                     element={<route.component />}
                   />
                 )
-              }) && (
-                <Route path="*" element={<Navigate replace to="/login" />} />
-              )}
+              })}
         </Routes>
       </div>
     </div>
