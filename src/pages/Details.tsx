@@ -1,17 +1,17 @@
 import { useEffect } from "react"
 import { Link, useParams } from "react-router-dom"
-import CheckBox from "../components/CheckBox"
+import CheckBox from "../components/Common/CheckBox"
 import ImageGal from "../components/ImageGallery"
-import StyledButton from "../components/StyledButton"
+import StyledButton from "../components/Common/StyledButton"
 
 const Details = () => {
-  const { id } = useParams()
+  const id = useParams()
   console.log(id)
   useEffect(() => {}, [id])
   return (
     <main className="flex flex-col py-10 overflow-x-hidden overflow-y-auto md:flex-row ">
       <div className="md:w-7/12 ">
-        <ImageGal />
+        <ImageGal images={[]} />
       </div>
 
       <section className="container flex flex-col gap-6 px-10 mx-auto md:w-5/12">
@@ -90,11 +90,11 @@ const Details = () => {
         <div className="flex justify-between">
           <div className="flex flex-col gap-2">
             <h3>last bid made</h3>
-            <h2>$ {"15"}</h2>
+            <h2 className="text-center">$ {"15"}</h2>
           </div>
           <div className="flex flex-col gap-2">
             <h3>available until</h3>
-            <h2>$ {"2:30:15"}</h2>
+            <h2 className="text-center"> {"00:00:00"}</h2>
           </div>
         </div>
 
@@ -102,7 +102,7 @@ const Details = () => {
 
         <div className="flex items-center gap-2">
           <CheckBox name="activate the" />
-          <Link to="/auto-bid">
+          <Link to="/settings">
             <p className="text-gray-900 underline hover:text-black ">
               auto-biding
             </p>

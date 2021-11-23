@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import { useEffect, useState } from "react"
-import CheckBox from "../CheckBox"
+import CheckBox from "../Common/CheckBox"
 import DropDown from "./DropDown"
 
 interface FilterProps {
@@ -81,7 +81,7 @@ const Filter: React.FC<FilterProps> = ({ title, className }) => {
             >
               <div className={`  flex flex-col  gap-4 `}>
                 <span>Arrange</span>
-                <select className={`bg-secondary-500 text-gray-600`}>
+                <select className={`bg-secondary-500 text-secondary-400`}>
                   <option>Popular</option>
                   <option>Latest</option>
                   <option>Hot bids</option>

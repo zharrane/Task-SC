@@ -1,4 +1,4 @@
-import StyledLink from "../StyledLink"
+import StyledLink from "../Common/StyledLink"
 
 interface CardProps {
   productId: string

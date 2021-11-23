@@ -1,4 +1,4 @@
-import StyledButton from "../components/StyledButton"
+import StyledButton from "../components/Common/StyledButton"
 
 const AutoBid = () => {
   return (

@@ -3,7 +3,6 @@ import AutoBid from "../pages/AutoBid"
 import Details from "../pages/Details"
 import HomePage from "../pages/Home"
 import Login from "../pages/Login"
-import NotFound from "../pages/NotFound"
 
 interface AppRoute {
   path: string
@@ -19,23 +18,12 @@ const protectedRoutes: AppRoute[] = [
     name: "Auto bidding",
     component: AutoBid,
   },
-
-  {
-    path: "*",
-    name: "Not found",
-    component: NotFound,
-  },
 ]
 const nonProtedtedRoutes: AppRoute[] = [
   {
     path: "/login",
     name: "sign in",
     component: Login,
-  },
-  {
-    path: "*",
-    name: "Not found",
-    component: NotFound,
   },
 ]
 

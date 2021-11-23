@@ -1,6 +1,6 @@
 import clsx from "clsx"
 import React, { useEffect, useRef, useState } from "react"
-import StyledButton from "../StyledButton"
+import StyledButton from "../Common/StyledButton"
 export type ImageType = { id: number; url: string }
 
 const ImageCarousel: React.FC<{ images?: ImageType[] }> = ({ images }) => {
@@ -94,7 +94,7 @@ const ImageCarousel: React.FC<{ images?: ImageType[] }> = ({ images }) => {
             <img
               alt=""
               src="/assets/icons/arrow.svg"
-              className="w-8 h-8 text-gray-100 -rotate-180 "
+              className="w-8 h-8 text-gray-100 rotated-arrow "
             />
           </StyledButton>
         </div>

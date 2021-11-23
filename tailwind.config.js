@@ -9,12 +9,16 @@ module.exports = {
       },
       colors: {
         primary: {
-          200: "#1C3D64",
-          500: "#1C3D64",
+          500: "#002e39",
+          700: "#1C3D64",
+          200: "#0f3942",
         },
         secondary: {
           400: "#B2E7E8",
-          500: "#8FB9AA",
+          600: "#8FB9AA",
+          700: "#00c4f5",
+          500: "#0f3942",
+          800: "#00afe7",
         },
       },
       gridTemplateColumns: {

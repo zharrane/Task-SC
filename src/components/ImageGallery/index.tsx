@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react"
 import ImageCarousel, { ImageType } from "./ImageCarousel"
 
-const ImageGal: React.FC = () => {
-  const [images, setImages] = useState<ImageType[]>()
+interface ImageGalProps {
+  images: string[]
+}
+const ImageGal: React.FC<ImageGalProps> = ({ images = [] }) => {
+  const [imagess, setImages] = useState<ImageType[]>()
 
   useEffect(() => {
     setImages(
@@ -37,7 +40,7 @@ const ImageGal: React.FC = () => {
 
   return (
     <div className="App">
-      <ImageCarousel images={images} />
+      <ImageCarousel images={imagess} />
     </div>
   )
 }

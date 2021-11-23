@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import StyledLink from "../StyledLink"
+import StyledLink from "../Common/StyledLink"
 
 const Header = () => {
   return (
