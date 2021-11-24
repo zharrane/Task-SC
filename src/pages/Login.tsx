@@ -1,6 +1,6 @@
 import axios from "axios"
 import clsx from "clsx"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import CONST from "../helpers/constants"
 
@@ -10,27 +10,49 @@ const login = async (username: string, password: string) => {
     password,
   }
   const url = `${CONST.BASE_URL}${CONST.SIGN_IN}`
-  const result = await axios.post(url, postData, CONST.HEADERS)
-  return result
+  try {
+    const result = await axios.post(url, postData, CONST.HEADERS)
+    const data = result.data
+    return { data, isAuthError: false }
+  } catch (error) {
+    return { error, isAuthError: true }
+  }
 }
 
 const Login = () => {
+  const history = useHistory()
   const [password, setPassword] = useState("")
   const [username, setUserName] = useState("")
   const [unvalidUser, setUnvalidUser] = useState(false)
   const [unvalidPassword, setUnvalidPassword] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [onError, setonError] = useState(false)
   const disabled = password === "" || username === "" ? true : false
   const pattern = {
     username: /^\w{5,12}$/, // accept only letters and numbers 5 to 12 chars
     password: /^[\w@-]{6,20}$/, // write your RegEx
   }
-  const history = useHistory()
+
+  useEffect(() => {
+    const app = localStorage.getItem("user")
+    if (app) history.push("/")
+  }, [history])
+
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    const result = await login(username, password)
-    console.log(result)
-    localStorage.setItem("user", JSON.stringify(result.data))
-    history.push("/products/71")
+    setLoading(true)
+    const res = await login(username, password)
+    if (res.isAuthError) {
+      setonError(true)
+      setLoading(false)
+    } else {
+      setLoading(false)
+      setonError(false)
+      console.log(res)
+      console.log(res.data)
+      localStorage.setItem("user", JSON.stringify(res.data))
+      history.push("/")
+    }
   }
   return (
     <div className="justify-center w-screen min-h-screen bg-gray-700 sm:px-6 lg:px-8 bg-gradient-to-br from-green-400 to-blue-500">
@@ -81,17 +103,33 @@ const Login = () => {
               click here
             </Link>
           </span>
-          <input
-            type="submit"
-            value="Log in"
+
+          <button
+            value=""
             placeholder="password"
             disabled={disabled}
             onClick={handleSubmit}
             className={clsx(
-              "p-3 mt-5 text-lg text-white capitalize border-2 rounded-lg bg-primary-200 cursor-pointer",
+              " relative p-3 mt-5 text-lg text-white capitalize border-2 rounded-lg bg-primary-200 cursor-pointer overflow-hidden",
               disabled ? "bg-secondary-600" : ""
             )}
-          />
+          >
+            <span
+              className={clsx(
+                loading &&
+                  "absolute inline-flex w-full h-full bg-black rounded-full opacity-75 animate-ping"
+              )}
+            ></span>
+
+            <span className="px-5">Log in</span>
+          </button>
+          <span
+            className={clsx(
+              onError ? "text-red-500 text-center inline-block" : "hidden"
+            )}
+          >
+            The username or password is incorrect try using zharrane/zaki0123
+          </span>
         </form>
       </div>
     </div>

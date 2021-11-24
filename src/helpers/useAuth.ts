@@ -2,18 +2,17 @@ import { useEffect, useState } from "react"
 
 const useAuth = () => {
   const [isLogged, setIsLogged] = useState<boolean>()
+  const item = localStorage.getItem("user")
   useEffect(() => {
-    const item: any = localStorage.getItem("user")
     console.log(item)
-    const userString = JSON.parse(item)
 
-    if (!userString) {
+    if (!item) {
       setIsLogged(false)
     } else {
       setIsLogged(true)
     }
-  }, [])
-  return { isLogged, setIsLogged }
+  }, [item])
+  return { isLogged }
 }
 
 export default useAuth

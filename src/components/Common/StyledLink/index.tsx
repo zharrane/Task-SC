@@ -12,10 +12,7 @@ const StyledLink: React.FC<StyledLinkProps> = ({
   path = "/",
 }) => {
   return (
-    <Link
-      to={path}
-      className={clsx(`text-secondary-400 text-lg block py-3 px-5 `, className)}
-    >
+    <Link to={path} className={clsx(` text-lg block py-3 px-5 `, className)}>
       {text}
     </Link>
   )
