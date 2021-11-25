@@ -1,8 +1,9 @@
 import axios from "axios"
 import clsx from "clsx"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import CONST from "../helpers/constants"
+import { AuthContext } from "../helpers/UserContext"
 
 const login = async (username: string, password: string) => {
   const postData = {
@@ -32,15 +33,16 @@ const Login = () => {
     username: /^\w{5,12}$/, // accept only letters and numbers 5 to 12 chars
     password: /^[\w@-]{6,20}$/, // write your RegEx
   }
-
+  const [isAuthenticated, setIsAuthenticated] = useContext(AuthContext)
   useEffect(() => {
     const app = localStorage.getItem("user")
-    if (app) history.push("/")
-  }, [history])
+    if (app || isAuthenticated) history.push("/")
+  }, [history, isAuthenticated])
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     setLoading(true)
+
     const res = await login(username, password)
     if (res.isAuthError) {
       setonError(true)
@@ -48,15 +50,14 @@ const Login = () => {
     } else {
       setLoading(false)
       setonError(false)
-      console.log(res)
-      console.log(res.data)
       localStorage.setItem("user", JSON.stringify(res.data))
+      setIsAuthenticated(true)
       history.push("/")
     }
   }
   return (
     <div className="justify-center w-screen min-h-screen bg-gray-700 sm:px-6 lg:px-8 bg-gradient-to-br from-green-400 to-blue-500">
-      <div className="w-full max-w-md p-6 mx-auto mt-16 space-y-8 bg-gray-100 rounded-lg shadow-2xl md:mt-36">
+      <div className="w-full max-w-md p-6 mx-auto space-y-8 bg-gray-100 rounded-lg shadow-2xl mt-14 md:mt-36">
         <h1 className="text-6xl text-center capitalize text-primary-200">
           Log in
         </h1>
@@ -77,7 +78,9 @@ const Login = () => {
               setUnvalidUser(!pattern.username.test(e.target.value))
             }
           />
-          {unvalidUser && <span className="text-red-600">Error Message</span>}
+          {unvalidUser && (
+            <span className="text-red-600">Invalid Username</span>
+          )}
           <label htmlFor="password" className="mt-5 capitalize">
             password
           </label>
@@ -94,7 +97,7 @@ const Login = () => {
             }
           />
           {unvalidPassword && (
-            <span className="text-red-600">Wrong Password</span>
+            <span className="text-red-600">Invalid Password</span>
           )}
 
           <span className="text-right">
@@ -125,10 +128,10 @@ const Login = () => {
           </button>
           <span
             className={clsx(
-              onError ? "text-red-500 text-center inline-block" : "hidden"
+              onError ? "text-red-500 text-center  inline-block" : "hidden"
             )}
           >
-            The username or password is incorrect try using zharrane/zaki0123
+            The username or password is incorrect try using zharrane/zaki0123 :)
           </span>
         </form>
       </div>

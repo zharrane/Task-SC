@@ -64,10 +64,14 @@
 }
 
 .selected-image {
+  height: 350px;
+}
+.gravatar,
+.selected-image,
+.selected-image-big {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 350px;
 }
 .selected-image-big {
   background-position: center center;

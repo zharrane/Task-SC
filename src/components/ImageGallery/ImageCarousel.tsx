@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import React, { useEffect, useRef, useState } from "react"
 import StyledButton from "../Common/StyledButton"
-export type ImageType = { id: number; url: string }
+export type ImageType = { _id: string; url: string }
 
 const ImageCarousel: React.FC<{ images?: ImageType[] }> = ({ images }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
@@ -65,7 +65,7 @@ const ImageCarousel: React.FC<{ images?: ImageType[] }> = ({ images }) => {
               <div
                 onClick={() => handleSelectedImageChange(idx)}
                 style={{ backgroundImage: `url(${image.url})` }}
-                key={image.id}
+                key={image._id}
                 className={clsx(
                   `carousel-image  mr-3 h-[150px]  min-w-[150px] px-2 border-1 border-primary-500 shadow-sm filter`,
                   selectedImageIndex === idx && "border-1 border-primary-500"

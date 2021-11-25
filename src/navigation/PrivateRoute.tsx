@@ -1,5 +1,4 @@
 import { Route, Redirect } from "react-router-dom"
-
 const PrivateRoute = ({ component: Component, ...rest }: any) => {
   const isAuthenticated = localStorage.getItem("user")
 
@@ -7,7 +6,11 @@ const PrivateRoute = ({ component: Component, ...rest }: any) => {
     <Route
       {...rest}
       render={(props) =>
-        isAuthenticated ? <Component {...props} /> : <Redirect to="/login" />
+        isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect exact to="/login" />
+        )
       }
     />
   )

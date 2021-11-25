@@ -1,55 +1,56 @@
+import axios from "axios"
 import clsx from "clsx"
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { useQuery } from "react-query"
+import CONST from "../../helpers/constants"
 import CheckBox from "../Common/CheckBox"
 import DropDown from "./DropDown"
 
 interface FilterProps {
   title: string
   className?: string
+  categoryList: any
+  minBid: number
+  maxBid: number
+  searchBid: number
+  setSearchBid: any
+  setCategoryList: any
 }
-interface CategoryType {
-  id: string
-  name: string
-}
-const Filter: React.FC<FilterProps> = ({ title, className }) => {
-  const [expandFilter, setExpandFiler] = useState<boolean>(false)
-  const [rangeValue, setRangeValue] = useState<number>(10)
-  const [minRangeValue, setMinValue] = useState<number>(0)
-  const [maxRangeValue, setMaxRangeValue] = useState<number>(0)
-  const [categories, setCategory] = useState<CategoryType[]>([])
 
-  useEffect(() => {
-    setMinValue(10)
-    setMaxRangeValue(100)
-    setCategory([
-      {
-        id: "1",
-        name: "Electronics",
-      },
-      {
-        id: "2",
-        name: "Toys",
-      },
-      {
-        id: "3",
-        name: "Tools",
-      },
-      {
-        id: "4",
-        name: "Art",
-      },
-      {
-        id: "5",
-        name: "books",
-      },
-      {
-        id: "6",
-        name: "craft",
-      },
-    ])
-  }, [])
+const fetchCategories = async () => {
+  const result = await axios.get(`${CONST.BASE_URL}${CONST.ALL_CATEGORIES}`)
+
+  return result.data
+}
+const Filter: React.FC<FilterProps> = ({
+  title,
+  className,
+  categoryList,
+  minBid,
+  maxBid,
+  searchBid,
+  setSearchBid,
+  setCategoryList,
+}) => {
+  const [expandFilter, setExpandFiler] = useState<boolean>(false)
+
+  const { isLoading, isError, isSuccess, data } = useQuery(
+    "category",
+    fetchCategories
+  )
   const handleOnChange = (e: any) => {
-    setRangeValue(e.target.value)
+    setSearchBid(e.target.value)
+  }
+  const onCheckBoxChange = (e: any) => {
+    if (e.target.checked) {
+      setCategoryList([...categoryList, e.target.value])
+    } else {
+      // remove from list
+      setCategoryList(
+        categoryList.filter((category: any) => category !== e.target.value)
+      )
+    }
+    console.log(categoryList)
   }
 
   return (
@@ -90,21 +91,21 @@ const Filter: React.FC<FilterProps> = ({ title, className }) => {
               <div className={`flex flex-col gap-4 `}>
                 <span>Minimum Bid</span>
                 <div className="flex items-center gap-2 ">
-                  <span>{minRangeValue}</span>
+                  <span>{minBid}</span>
                   <div className="flex flex-col h-full">
                     <input
                       type="range"
                       id="price-range"
                       name="Price"
-                      min={minRangeValue}
-                      max={maxRangeValue}
-                      value={rangeValue}
+                      min={minBid}
+                      max={maxBid}
+                      value={searchBid}
                       step="1"
                       className={`rounded-lg  appearance-none bg-secondary-500 h-4 w-128 cursor-pointer`}
                       onChange={handleOnChange}
                     />
                   </div>
-                  <span className="w-16 lg:w-full">{rangeValue}$</span>
+                  <span className="w-16 lg:w-full">{maxBid}$</span>
                 </div>
               </div>
             </div>
@@ -112,9 +113,19 @@ const Filter: React.FC<FilterProps> = ({ title, className }) => {
               <div>
                 <span>Category</span>
                 <div className="grid grid-cols-3 gap-2 px-2 mt-4 md:grid-cols-4 lg:grid-cols-1">
-                  {categories.map((category) => {
-                    return <CheckBox name={category.name} key={category.id} />
-                  })}
+                  {isLoading && <p>...</p>}
+                  {isError && <p> Categories not found</p>}
+                  {isSuccess &&
+                    data.Items.map((category: any) => {
+                      return (
+                        <CheckBox
+                          name={category.categoryTitle}
+                          key={category._id}
+                          _id={category._id}
+                          onChange={onCheckBoxChange}
+                        />
+                      )
+                    })}
                 </div>
               </div>
             </div>
