@@ -8,6 +8,7 @@ import { useQuery } from "react-query"
 import { useState } from "react"
 
 import Countdown from "react-countdown"
+import clsx from "clsx"
 
 const fetchSingleProduct = async (key: any) => {
   const id = key.queryKey[1]
@@ -79,7 +80,6 @@ const Details = () => {
         }
         if (isLastBidder && isLastBidder === userid) {
           setCanBid(false)
-          setText("You have the highest bid")
         } else {
           setCanBid(true)
           setText("Place a bid")
@@ -164,11 +164,16 @@ const Details = () => {
               </div>
             </div>
 
-            <StyledButton
-              text={text}
-              disabled={!canBid || ended}
+            <button
+              disabled={canBid || ended || canSubscribe}
+              className={clsx(
+                " filter shadow-sm py-4 px-2  rounded-md  text-secondary-400",
+                canBid || ended || canSubscribe ? "bg-gray-400" : " bg-gray-700"
+              )}
               onClick={onPlaceBid}
-            />
+            >
+              {text}
+            </button>
 
             <div className="flex items-center gap-2">
               <CheckBox
