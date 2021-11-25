@@ -55,6 +55,7 @@ const Details = () => {
   const userid = parsedUser.uid
   const { id } = useParams<{ id: string }>()
   const [canBid, setCanBid] = useState(true)
+  const [text, setText] = useState("Place a bid")
   const [time, setTime] = useState("")
   const [ended, setEnded] = useState(false)
   const [canSubscribe, setCanSubscribe] = useState(true)
@@ -67,10 +68,23 @@ const Details = () => {
           (item: any) => item.userId === userid
         )
         let isLastBidder = data.winner
-        isSubscriber.length > 0 ? setCanSubscribe(true) : setCanSubscribe(false)
-        isLastBidder && isLastBidder === userid
-          ? setCanBid(false)
-          : setCanBid(true)
+        if (isSubscriber.length > 0) {
+          setCanSubscribe(true)
+          setCanBid(true)
+          setText("You are subscribed")
+        } else {
+          setCanSubscribe(false)
+          setCanBid(false)
+          setText("Place a bid")
+        }
+        if (isLastBidder && isLastBidder === userid) {
+          setCanBid(false)
+          setText("You have the highest bid")
+        } else {
+          setCanBid(true)
+          setText("Place a bid")
+        }
+
         const duration = checkDuration(data.createdOn, data.duration)
         !duration.res ? setEnded(true) : setEnded(false)
         let durationToVisible = duration.DeadLine.toString()
@@ -151,7 +165,7 @@ const Details = () => {
             </div>
 
             <StyledButton
-              text={`${canBid ? "Place a bid" : "Your are the current winner"}`}
+              text={text}
               disabled={!canBid || ended}
               onClick={onPlaceBid}
             />
