@@ -17,7 +17,7 @@ const Card: React.FC<CardProps> = ({
   productId,
 }) => {
   return (
-    <div className="h-full max-w-lg overflow-hidden rounded shadow-lg bg-blue-50">
+    <div className="w-full h-full max-w-lg overflow-hidden rounded shadow-lg bg-blue-50">
       <img className="object-cover w-full h-72" src={imageUrl} alt={title} />
       <div className="flex items-center justify-between px-3 py-3">
         <div className="px-2 w-52 lg:w-44">
