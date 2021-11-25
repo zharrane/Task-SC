@@ -51,7 +51,7 @@ const Login = () => {
       setLoading(false)
       setonError(false)
       localStorage.setItem("user", JSON.stringify(res.data))
-      setIsAuthenticated(true)
+      setIsAuthenticated({ auth: true, uid: res.data.uid })
       history.push("/")
     }
   }

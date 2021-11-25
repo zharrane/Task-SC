@@ -64,7 +64,7 @@
 }
 
 .selected-image {
-  height: 350px;
+  height: 400px;
 }
 .gravatar,
 .selected-image,
@@ -74,10 +74,7 @@
   background-size: cover;
 }
 .selected-image-big {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 650px;
+  height: 700px;
 }
 .carousel-image {
   margin-right: 10px;

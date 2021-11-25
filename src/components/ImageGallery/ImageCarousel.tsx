@@ -58,8 +58,8 @@ const ImageCarousel: React.FC<{ images?: ImageType[] }> = ({ images }) => {
         className="w-full mb-8 shadow-lg md:selected-image-big selected-image filter"
         style={{ backgroundImage: `url(${selectedImage?.url})` }}
       />
-      <div className="relative">
-        <div className="flex max-w-full overflow-x-hidden">
+      <div className="container relative mx-auto">
+        <div className="flex max-w-full overflow-x-hidden ">
           {images &&
             images.map((image, idx) => (
               <div
@@ -67,7 +67,7 @@ const ImageCarousel: React.FC<{ images?: ImageType[] }> = ({ images }) => {
                 style={{ backgroundImage: `url(${image.url})` }}
                 key={image._id}
                 className={clsx(
-                  `carousel-image  mr-3 h-[150px]  min-w-[150px] px-2 border-1 border-primary-500 shadow-sm filter`,
+                  `carousel-image  mr-3  px-2 border-1 border-primary-500 shadow-sm filter`,
                   selectedImageIndex === idx && "border-1 border-primary-500"
                 )}
                 ref={(el) => (carouselItemsRef.current[idx] = el)}
@@ -76,8 +76,10 @@ const ImageCarousel: React.FC<{ images?: ImageType[] }> = ({ images }) => {
         </div>
         <div onClick={() => handleClick("left")}>
           <StyledButton
+            disabled={false}
             text=""
             className="absolute floating-button-left bg-opacity-40 hover:scale-110 hover:bg-opacity-80"
+            onClick={() => {}}
           >
             <img
               alt=""
@@ -88,8 +90,10 @@ const ImageCarousel: React.FC<{ images?: ImageType[] }> = ({ images }) => {
         </div>
         <div onClick={() => handleClick("right")}>
           <StyledButton
+            disabled={false}
             text=""
             className="absolute floating-button-right bg-opacity-40 hover:scale-110 hover:bg-opacity-80"
+            onClick={() => {}}
           >
             <img
               alt=""

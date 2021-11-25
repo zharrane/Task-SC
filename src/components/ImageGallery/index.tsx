@@ -1,15 +1,12 @@
-import { useState } from "react"
 import ImageCarousel from "./ImageCarousel"
 
 interface ImageGalProps {
   images: string[]
 }
-const ImageGal: React.FC<ImageGalProps> = ({ images = [] }) => {
-  const [imagess, setImages] = useState<any[]>(images)
-
+const ImageGal: React.FC<ImageGalProps> = ({ images = [] }: any) => {
   return (
     <div className="App">
-      <ImageCarousel images={imagess} />
+      <ImageCarousel images={images} />
     </div>
   )
 }

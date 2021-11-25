@@ -18,9 +18,13 @@ interface FilterProps {
 }
 
 const fetchCategories = async () => {
-  const result = await axios.get(`${CONST.BASE_URL}${CONST.ALL_CATEGORIES}`)
+  try {
+    const result = await axios.get(`${CONST.BASE_URL}${CONST.ALL_CATEGORIES}`)
 
-  return result.data
+    return result.data
+  } catch (error: any) {
+    error.response.status === 401 && localStorage.clear()
+  }
 }
 const Filter: React.FC<FilterProps> = ({
   title,
@@ -50,7 +54,6 @@ const Filter: React.FC<FilterProps> = ({
         categoryList.filter((category: any) => category !== e.target.value)
       )
     }
-    console.log(categoryList)
   }
 
   return (
@@ -89,7 +92,7 @@ const Filter: React.FC<FilterProps> = ({
                 </select>
               </div>
               <div className={`flex flex-col gap-4 `}>
-                <span>Minimum Bid</span>
+                <span>Available Budget</span>
                 <div className="flex items-center gap-2 ">
                   <span>{minBid}</span>
                   <div className="flex flex-col h-full">
@@ -119,6 +122,7 @@ const Filter: React.FC<FilterProps> = ({
                     data.Items.map((category: any) => {
                       return (
                         <CheckBox
+                          defaultChecked={false}
                           name={category.categoryTitle}
                           key={category._id}
                           _id={category._id}
