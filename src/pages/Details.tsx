@@ -1,7 +1,6 @@
 import { Link, useParams } from "react-router-dom"
 import CheckBox from "../components/Common/CheckBox"
 import ImageGal from "../components/ImageGallery"
-import StyledButton from "../components/Common/StyledButton"
 import axios from "axios"
 import CONST from "../helpers/constants"
 import { useQuery } from "react-query"
@@ -68,25 +67,32 @@ const Details = () => {
         let isSubscriber = data.subscribers.filter(
           (item: any) => item.userId === userid
         )
+        console.log(isSubscriber)
         let isLastBidder = data.winner
         if (isSubscriber.length > 0) {
-          setCanSubscribe(true)
-          setCanBid(true)
-          setText("You are subscribed")
-        } else {
           setCanSubscribe(false)
           setCanBid(false)
+          setText("You are already subscribed")
+          console.log(canBid)
+          console.log(canSubscribe)
+        } else {
+          setCanSubscribe(true)
+          setCanBid(true)
+          console.log(canBid)
+          console.log(canSubscribe)
           setText("Place a bid")
         }
         if (isLastBidder && isLastBidder === userid) {
           setCanBid(false)
+          setText("You're the current winner")
         } else {
           setCanBid(true)
           setText("Place a bid")
         }
 
         const duration = checkDuration(data.createdOn, data.duration)
-        !duration.res ? setEnded(true) : setEnded(false)
+        console.log(duration)
+        !duration.res ? setEnded(false) : setEnded(true)
         let durationToVisible = duration.DeadLine.toString()
         duration.res && setTime(durationToVisible)
       },
@@ -94,6 +100,7 @@ const Details = () => {
   )
 
   const onPlaceBid = async () => {
+    console.log("click")
     try {
       const result = await axios({
         method: "patch",
@@ -101,7 +108,7 @@ const Details = () => {
         data: { lastBidPrice: data.productPrice + 1 },
       })
 
-      result && setCanBid(true)
+      result && setCanBid(false)
     } catch (error: any) {
       error.response.status === 401 && localStorage.clear()
     }
@@ -155,7 +162,7 @@ const Details = () => {
               </div>
               <div className="flex flex-col gap-2">
                 <h3>available until</h3>
-                <div className="text-center">
+                <div className="text-center min-w-md">
                   <Countdown
                     date={Date.now() + 24 * 60 * 60 * 1000 - +time}
                     renderer={renderer}
@@ -165,10 +172,12 @@ const Details = () => {
             </div>
 
             <button
-              disabled={canBid || ended || canSubscribe}
+              disabled={!canBid || !canSubscribe || !ended}
               className={clsx(
                 " filter shadow-sm py-4 px-2  rounded-md  text-secondary-400",
-                canBid || ended || canSubscribe ? "bg-gray-400" : " bg-gray-700"
+                !canBid || !canSubscribe || !ended
+                  ? "bg-gray-400"
+                  : "   bg-gray-700"
               )}
               onClick={onPlaceBid}
             >
@@ -177,7 +186,7 @@ const Details = () => {
 
             <div className="flex items-center gap-2">
               <CheckBox
-                defaultChecked={canSubscribe}
+                defaultChecked={!canSubscribe}
                 name="activate the"
                 _id={"1"}
                 onChange={onSubscribe}
