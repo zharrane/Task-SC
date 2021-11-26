@@ -65,7 +65,7 @@ const DropDownMenu: React.FC<DropProps> = ({ user, balance }) => {
                     className="items-center w-full"
                     onClick={() => {
                       localStorage.clear()
-                      history.push("/login")
+                      history.push("/")
                     }}
                   >
                     <div
