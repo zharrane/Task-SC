@@ -67,19 +67,15 @@ const Details = () => {
         let isSubscriber = data.subscribers.filter(
           (item: any) => item.userId === userid
         )
-        console.log(isSubscriber)
         let isLastBidder = data.winner
         if (isSubscriber.length > 0) {
           setCanSubscribe(false)
           setCanBid(false)
           setText("You are already subscribed")
-          console.log(canBid)
-          console.log(canSubscribe)
         } else {
           setCanSubscribe(true)
           setCanBid(true)
-          console.log(canBid)
-          console.log(canSubscribe)
+
           setText("Place a bid")
         }
         if (isLastBidder && isLastBidder === userid) {
@@ -91,7 +87,6 @@ const Details = () => {
         }
 
         const duration = checkDuration(data.createdOn, data.duration)
-        console.log(duration)
         !duration.res ? setEnded(false) : setEnded(true)
         let durationToVisible = duration.DeadLine.toString()
         duration.res && setTime(durationToVisible)
@@ -100,7 +95,6 @@ const Details = () => {
   )
 
   const onPlaceBid = async () => {
-    console.log("click")
     try {
       const result = await axios({
         method: "patch",
