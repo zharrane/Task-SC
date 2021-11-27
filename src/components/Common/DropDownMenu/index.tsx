@@ -62,27 +62,22 @@ const DropDownMenu: React.FC<DropProps> = ({ user, balance }) => {
               )}
             </Menu.Item>
 
-            <div>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className="items-center w-full"
-                    onClick={handleOnClick}
+            <Menu.Item>
+              {({ active }) => (
+                <button className="items-center w-full" onClick={handleOnClick}>
+                  <div
+                    className={classNames(
+                      active
+                        ? "bg-secondary-600 text-gray-900"
+                        : "text-gray-700",
+                      "block w-full  px-4 py-2 text-sm text-center items-center mx-auto"
+                    )}
                   >
-                    <div
-                      className={classNames(
-                        active
-                          ? "bg-secondary-600 text-gray-900"
-                          : "text-gray-700",
-                        "block w-full  px-4 py-2 text-sm text-center items-center mx-auto"
-                      )}
-                    >
-                      <p className=" text-blue-50"> Log out</p>
-                    </div>
-                  </button>
-                )}
-              </Menu.Item>
-            </div>
+                    <p className=" text-blue-50"> Log out</p>
+                  </div>
+                </button>
+              )}
+            </Menu.Item>
           </div>
         </Menu.Items>
       </Transition>
