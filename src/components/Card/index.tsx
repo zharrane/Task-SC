@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import StyledLink from "../Common/StyledLink"
 
 interface CardProps {
@@ -18,7 +19,11 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <div className="w-full h-full max-w-lg overflow-hidden rounded shadow-lg bg-blue-50">
-      <img className="object-cover w-full h-72" src={imageUrl} alt={title} />
+      <img
+        className={clsx("object-cover w-full h-72 bg-gray-600")}
+        src={imageUrl}
+        alt={title}
+      />
       <div className="flex items-center justify-between px-3 py-3">
         <div className="px-2 w-52 lg:w-44">
           <div className="text-xl font-bold ">{title}</div>

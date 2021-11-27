@@ -51,12 +51,12 @@ const Header = () => {
           }
         }
       },
+      cacheTime: 0,
     }
   )
-
+  console.log(isAuthenticated)
   return (
     <header
-      id="#"
       className={`flex bg-primary-500 text-gray-300 absolute px-9 top-0 left-0 right-0  z-50`}
     >
       <nav
@@ -70,7 +70,7 @@ const Header = () => {
             <p className={`uppercase text-white`}>AUCTION</p>
           </Link>
         )}
-        {data && isSuccess && (
+        {isAuthenticated && isSuccess && (
           <div
             className={clsx(
               isLoading ? "animate-pulse" : "",
@@ -94,9 +94,7 @@ const Header = () => {
                     </Link>
                   )}
                   <DropDownMenu user={data.username} balance={data.balance} />
-                  {/* <h6>{data.username}</h6> */}
                 </div>
-                {/* <p className="text-center text-yellow-200">${data.balance}</p> */}
               </div>
               <div className={`absolute hidden hover:block w-full`}>
                 <Link to="/settings">
