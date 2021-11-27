@@ -12,8 +12,7 @@ const login = async (username: string, password: string) => {
   }
   const url = `${CONST.BASE_URL}${CONST.SIGN_IN}`
   try {
-    const result = await axios.post(url, postData, CONST.HEADERS)
-    const data = result.data
+    const { data } = await axios.post(url, postData, CONST.HEADERS)
     return { data, isAuthError: false }
   } catch (error) {
     return { error, isAuthError: true }
@@ -33,6 +32,7 @@ const Login = () => {
     username: /^\w{5,12}$/, // accept only letters and numbers 5 to 12 chars
     password: /^[\w@-]{6,20}$/, // write your RegEx
   }
+
   const [isAuthenticated, setIsAuthenticated] = useContext(AuthContext)
   useEffect(() => {
     const app = localStorage.getItem("user")

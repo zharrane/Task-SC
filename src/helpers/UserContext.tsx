@@ -1,10 +1,5 @@
 import { useState, createContext } from "react"
 
-// interface AuthContextInterface {
-//   isAuthenticated: boolean
-//   setIsAuthenticated: any
-// }
-
 export const AuthContext = createContext<any | null>(null)
 
 const UserContext = ({ children }: any) => {

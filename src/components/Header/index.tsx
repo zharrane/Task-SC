@@ -28,6 +28,7 @@ const Header = () => {
     ["user-data-settings", isAuthenticated],
     getDatas,
     {
+      enabled: !!localStorage.getItem("user"),
       onSuccess: async (data) => {
         if (data) {
           setPicture(data.picture)
@@ -55,6 +56,7 @@ const Header = () => {
 
   return (
     <header
+      id="#"
       className={`flex bg-primary-500 text-gray-300 absolute px-9 top-0 left-0 right-0  z-50`}
     >
       <nav

@@ -1,26 +1,12 @@
 import { Link, useParams } from "react-router-dom"
 import CheckBox from "../components/Common/CheckBox"
 import ImageGal from "../components/ImageGallery"
-import axios from "axios"
 import CONST from "../helpers/constants"
-import { useQuery } from "react-query"
 import { useState } from "react"
 
 import Countdown from "react-countdown"
 import clsx from "clsx"
-
-const fetchSingleProduct = async (key: any) => {
-  const id = key.queryKey[1]
-  try {
-    const result = await axios.get(
-      `${CONST.BASE_URL}${CONST.ALL_PRODUCTS}/${id}`
-    )
-    return result.data
-  } catch (error: any) {
-    error.response.status === 401 && localStorage.clear()
-    return []
-  }
-}
+import useApiFetch, { fetcher } from "../helpers/useApiFetch"
 
 const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
   if (completed) {
@@ -59,72 +45,59 @@ const Details = () => {
   const [time, setTime] = useState("")
   const [ended, setEnded] = useState(false)
   const [canSubscribe, setCanSubscribe] = useState(true)
-  const { isLoading, isError, isSuccess, data } = useQuery(
+
+  const { isLoading, isSuccess, isError, data } = useApiFetch(
     ["single-product", id],
-    fetchSingleProduct,
-    {
-      onSuccess: (data) => {
-        let isSubscriber = data.subscribers.filter(
-          (item: any) => item.userId === userid
-        )
-        let isLastBidder = data.winner
-        if (isSubscriber.length > 0) {
-          setCanSubscribe(false)
-          setCanBid(false)
-          setText("You are already subscribed")
-        } else {
-          setCanSubscribe(true)
-          setCanBid(true)
+    `${CONST.ALL_PRODUCTS}/${id}`,
+    "get",
+    {},
+    (data: any) => {
+      let isSubscriber = data.subscribers.filter(
+        (item: any) => item.userId === userid
+      )
+      let isLastBidder = data.winner
+      if (isSubscriber.length > 0) {
+        setCanSubscribe(false)
+        setCanBid(false)
+        setText("You are already subscribed")
+      } else {
+        setCanSubscribe(true)
+        setCanBid(true)
 
-          setText("Place a bid")
-        }
-        if (isLastBidder && isLastBidder === userid) {
-          setCanBid(false)
-          setText("You're the current winner")
-        } else {
-          setCanBid(true)
-          setText("Place a bid")
-        }
+        setText("Place a bid")
+      }
+      if (isLastBidder && isLastBidder === userid) {
+        setCanBid(false)
+        setText("You're the current winner")
+      } else {
+        setCanBid(true)
+        setText("Place a bid")
+      }
 
-        const duration = checkDuration(data.createdOn, data.duration)
-        !duration.res ? setEnded(false) : setEnded(true)
-        let durationToVisible = duration.DeadLine.toString()
-        duration.res && setTime(durationToVisible)
-      },
+      const duration = checkDuration(data.createdOn, data.duration)
+      !duration.res ? setEnded(false) : setEnded(true)
+      let durationToVisible = duration.DeadLine.toString()
+      duration.res && setTime(durationToVisible)
     }
   )
 
   const onPlaceBid = async () => {
-    try {
-      const result = await axios({
-        method: "patch",
-        url: `${CONST.BASE_URL}${CONST.ALL_PRODUCTS}/bid/${id}`,
-        data: { lastBidPrice: data.productPrice + 1 },
-      })
-
-      result && setCanBid(false)
-    } catch (error: any) {
-      error.response.status === 401 && localStorage.clear()
-    }
+    fetcher(`${CONST.ALL_PRODUCTS}/bid/${id}`, "patch", {
+      lastBidPrice: data.productPrice + 1,
+    })
   }
 
   const onSubscribe = async (e: any) => {
-    try {
-      if (e.target.checked) {
-        const result = await axios({
-          method: "patch",
-          url: `${CONST.BASE_URL}${CONST.ALL_PRODUCTS}/subscribe/${id}`,
-        })
-        result && setCanSubscribe(false)
-      } else {
-        const result = await axios({
-          method: "patch",
-          url: `${CONST.BASE_URL}${CONST.ALL_PRODUCTS}/unsubscribe/${id}`,
-        })
-        result && setCanSubscribe(true)
-      }
-    } catch (error: any) {
-      error.response.status === 401 && localStorage.clear()
+    if (e.target.checked) {
+      fetcher(`${CONST.ALL_PRODUCTS}/subscribe/${id}`, "patch", {
+        lastBidPrice: data.productPrice + 1,
+      })
+      setCanSubscribe(false)
+    } else {
+      fetcher(`${CONST.ALL_PRODUCTS}/unsubscribe/${id}`, "patch", {
+        lastBidPrice: data.productPrice + 1,
+      })
+      setCanSubscribe(true)
     }
   }
 

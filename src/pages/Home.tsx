@@ -1,35 +1,20 @@
-import axios from "axios"
 import { useState } from "react"
-import { useQuery } from "react-query"
 import Card from "../components/Card"
 import Filter from "../components/Filter"
 import CONST from "../helpers/constants"
-
-const fetchPorducts = async (key: any) => {
-  try {
-    const searchBid = key.queryKey[1]
-    const categoryList = key.queryKey[2]
-
-    const result = await axios({
-      method: "post",
-      url: `${CONST.BASE_URL}${CONST.ALL_PRODUCTS}`,
-      data: { minimumPrice: searchBid, categories: categoryList },
-    })
-    return result.data
-  } catch (error: any) {
-    error.response.status === 401 && localStorage.clear()
-  }
-}
+import useApiFetch from "../helpers/useApiFetch"
 
 const HomePage = () => {
   const [categoryList, setCategoryList] = useState<[]>([])
   const [searchBid, setSearchBid] = useState(100000)
 
-  const { isLoading, isError, isSuccess, data } = useQuery(
+  const { isLoading, isError, isSuccess, data } = useApiFetch(
     ["Products", searchBid, categoryList],
-    fetchPorducts
+    `${CONST.ALL_PRODUCTS}`,
+    "post",
+    { minimumPrice: searchBid, categories: categoryList },
+    () => {}
   )
-
   return (
     <>
       <div className="w-12/12 lg:w-3/12 xl:w-2/12">

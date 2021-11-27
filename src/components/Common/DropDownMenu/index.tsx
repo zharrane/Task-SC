@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from "react"
+import { Fragment, useCallback } from "react"
 import { Menu, Transition } from "@headlessui/react"
 import { Link, useHistory } from "react-router-dom"
 function classNames(...classes: any) {
@@ -12,6 +12,10 @@ interface DropProps {
 }
 const DropDownMenu: React.FC<DropProps> = ({ user, balance }) => {
   const history = useHistory()
+  const handleOnClick = useCallback(() => {
+    localStorage.clear()
+    history.push("/login")
+  }, [history])
 
   return (
     <Menu as="div" className="relative inline-block text-left bg-secondary-500">
@@ -58,15 +62,12 @@ const DropDownMenu: React.FC<DropProps> = ({ user, balance }) => {
               )}
             </Menu.Item>
 
-            <form method="POST" action="#">
+            <div>
               <Menu.Item>
                 {({ active }) => (
                   <button
                     className="items-center w-full"
-                    onClick={() => {
-                      localStorage.clear()
-                      history.push("/")
-                    }}
+                    onClick={handleOnClick}
                   >
                     <div
                       className={classNames(
@@ -81,7 +82,7 @@ const DropDownMenu: React.FC<DropProps> = ({ user, balance }) => {
                   </button>
                 )}
               </Menu.Item>
-            </form>
+            </div>
           </div>
         </Menu.Items>
       </Transition>

@@ -2,29 +2,37 @@ import { useQuery } from "react-query"
 import axios, { Method } from "axios"
 import CONST from "./constants"
 
-export const fetcher = async (url: string, requestType: Method, data: any) => {
+export const fetcher = async (
+  url: string,
+  requestType: Method,
+  datas?: any
+) => {
   try {
-    return axios.request({
+    const { data } = await axios.request({
       method: requestType,
       baseURL: CONST.BASE_URL,
       url,
-      data,
+      data: datas,
     })
+    return data
   } catch (error: any) {
     error.response.status === 401 && localStorage.clear()
+    return []
   }
 }
 
 const useApiFetch = (
   queryKeys: any,
-  queryConfig?: any,
-  enabled: any,
-  onSuccess: any
+  url: string,
+  requestType: Method,
+  datas: any,
+  doOnSuccess: any
 ) => {
-  return useQuery([...queryKeys], () => fetcher, {
-    enabled: enabled,
-    onSuccess,
-    ...queryConfig,
-  })
+  const { isLoading, isSuccess, isError, data } = useQuery(
+    [...queryKeys],
+    async () => fetcher(url, requestType, datas),
+    { onSuccess: (data) => doOnSuccess(data) }
+  )
+  return { isLoading, isSuccess, isError, data }
 }
 export default useApiFetch

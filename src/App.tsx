@@ -21,8 +21,8 @@ function App() {
             <Header />
           </div>
           <div className="flex flex-col mt-32 overflow-hidden lg:flex-row">
-            <Route exact path="/login" component={Login} />
             <Switch>
+              <Route exact path="/login" component={Login} />
               <PrivateRoute exact path="/products/:id" component={Details} />
               <PrivateRoute exact path="/settings" component={AutoBid} />
               <PrivateRoute Route exact path="/" component={HomePage} />

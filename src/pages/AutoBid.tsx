@@ -1,28 +1,18 @@
-import axios from "axios"
 import { useState } from "react"
-import { useQuery } from "react-query"
 import StyledButton from "../components/Common/StyledButton"
-import CONST from "../helpers/constants"
-
-const fetchSettings = async () => {
-  try {
-    const result = await axios({
-      method: "get",
-      url: `${CONST.BASE_URL}/users/settings/get`,
-    })
-    return result.data
-  } catch (error: any) {
-    error.response.status === 401 && localStorage.clear()
-  }
-}
+import useApiFetch, { fetcher } from "../helpers/useApiFetch"
 
 const AutoBid = () => {
   const [alert, setAlert] = useState(false)
   const [calculation, setCalculation] = useState(0)
   const [balance, setBalance] = useState(0)
   const [notification, setNotification] = useState(0)
-  const { isLoading, isSuccess, data } = useQuery(["settings"], fetchSettings, {
-    onSuccess: (data) => {
+  const { isLoading, isSuccess, data } = useApiFetch(
+    ["settings"],
+    "/users/settings/get",
+    "get",
+    {},
+    (data: any) => {
       setBalance(data.remainingBidAmount)
       setNotification(data.notification)
       let res = data
@@ -33,22 +23,14 @@ const AutoBid = () => {
       } else {
         setAlert(false)
       }
-    },
-  })
+    }
+  )
 
   const handleChangeSettings = async () => {
-    try {
-      await axios({
-        method: "put",
-        url: `${CONST.BASE_URL}/users/settings/update`,
-        data: {
-          autoBidAmount: balance,
-          notification: notification,
-        },
-      })
-    } catch (error: any) {
-      error.response.status === 401 && localStorage.clear()
-    }
+    fetcher(`/users/settings/update`, "put", {
+      autoBidAmount: balance,
+      notification: notification,
+    })
   }
   return (
     <main className="container py-24 mx-auto overflow-hidden">
