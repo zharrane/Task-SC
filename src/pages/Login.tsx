@@ -1,6 +1,6 @@
 import axios from "axios"
 import clsx from "clsx"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import CONST from "../helpers/constants"
 import { AuthContext } from "../helpers/UserContext"
@@ -34,6 +34,14 @@ const Login = () => {
   }
 
   const [isAuthenticated, setIsAuthenticated] = useContext(AuthContext)
+
+  useEffect(() => {
+    let user = localStorage.getItem("user")
+    if (user) {
+      history.push("/")
+    }
+  }, [history])
+
   console.log(isAuthenticated)
   const handleSubmit = async (e: any) => {
     e.preventDefault()
